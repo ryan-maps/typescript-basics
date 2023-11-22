@@ -44,7 +44,7 @@ const duck: Duck = {
 */
 
 // # Function
-function padLeft(padding: number | string, input: string): string {
+function padLeft(padding: number | string, input: string): never {
     throw new Error("Not implemented yet!");
 }
 
@@ -53,7 +53,7 @@ function padLeft(padding: number | string, input: string): string {
  * Bloco de código que restringe um tipo de uma variável.
  */
 
-function toInteger(value: string | number | null): number {
+function toInteger(value: string | number): number {
     if(typeof value === "number" ){
         // Reconhece somente como número
         return value.valueOf()
@@ -64,4 +64,69 @@ function toInteger(value: string | number | null): number {
     }
     // Reconhece como null
     return 0;
+}
+
+// # Predicados
+
+type Card = {
+    name: string,
+    serial: number
+    owner: User
+}
+
+const creditCard: Card = {
+    name: "Bank A",
+    serial: 1000,
+    owner: person
+}
+
+function isCard(card: Card | null): card is Card{
+    const casting = (card as Card);
+    console.log(casting)
+    return casting?.owner !== undefined
+}
+
+const resultCard = isCard(creditCard);
+console.log(resultCard);
+const resultNull = isCard(null);
+console.log(resultNull);
+
+// # Intersection type
+/**
+ * Mescla tipos;
+ */
+type UserDuck = User & Duck;
+
+const userDuck: UserDuck = {
+    name: 'DuckPro',
+    age: 20,
+    quack: () => {
+        console.log('Quack');
+    }
+}
+
+// # Generics
+
+interface Box<Type> {
+    contents: Type;
+}
+const boxUserDuck: Box<UserDuck> = {
+    contents: userDuck
+}
+
+// ReturnType
+/**
+ * Consegue obter o tipo do retorno de uma função
+ */
+
+type typeIsCard = ReturnType<typeof isCard>
+
+// # Never
+function throwError(): never {
+    throw new Error("Not implemented yet!");
+}
+try{
+    throwError();
+} catch(error){
+    console.log("error")
 }

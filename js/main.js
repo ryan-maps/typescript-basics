@@ -45,3 +45,37 @@ function toInteger(value) {
     // Reconhece como null
     return 0;
 }
+const creditCard = {
+    name: "Bank A",
+    serial: 1000,
+    owner: person
+};
+function isCard(card) {
+    const casting = card;
+    console.log(casting);
+    return casting?.owner !== undefined;
+}
+const resultCard = isCard(creditCard);
+console.log(resultCard);
+const resultNull = isCard(null);
+console.log(resultNull);
+const userDuck = {
+    name: 'DuckPro',
+    age: 20,
+    quack: () => {
+        console.log('Quack');
+    }
+};
+const boxUserDuck = {
+    contents: userDuck
+};
+// # Never
+function throwError() {
+    throw new Error("Not implemented yet!");
+}
+try {
+    throwError();
+}
+catch (error) {
+    console.log("error");
+}
